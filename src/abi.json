@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "endianness": "little",
+  "alignment": 4,
+  "limits": {"inputBytes": 67108864, "decodedBytes": 268435456, "profileBytes": 4194304, "outputBytes": 285212672, "retainedBytes": 536870912, "maximumPages": 16384},
+  "enums": {
+    "primaries": ["srgb", "display-p3", "rec2020", "a98-rgb", "prophoto-rgb", "xyz-d50", "xyz-d65"],
+    "transfer": ["srgb", "linear", "gamma", "pq", "hlg", "rec2020", "prophoto-rgb", "icc"],
+    "sampleType": ["uint8", "uint16", "float16", "float32"],
+    "channelLayout": ["gray", "gray-alpha", "rgb", "rgba"],
+    "alphaMode": ["opaque", "straight", "premultiplied"],
+    "whitePoint": ["d50", "d65"]
+  },
+  "fields": ["version", "width", "height", "rowStride", "sampleType", "bitsPerSample", "channelLayout", "alphaMode", "primaries", "transfer", "whitePoint", "flags", "gammaLow", "gammaHigh", "pixelOffset", "pixelLength", "profileOffset", "profileLength", "primariesCode", "transferCode", "redX", "redY", "greenX", "greenY", "blueX", "blueY", "whiteX", "whiteY", "maximumLuminance", "minimumLuminance", "maximumContentLightLevel", "maximumFrameAverageLightLevel", "mode", "pixelHandle", "profileHandle", "compressionLevel", "masteringMaxLow", "masteringMaxHigh", "masteringMinLow", "masteringMinHigh", "contentMaxLow", "contentMaxHigh", "frameAverageLow", "frameAverageHigh"],
+  "flags": {"assumedSrgb": 1, "assumedSrgbTransfer": 2, "iccProfile": 4, "codedColorVolume": 8, "masteringDisplay": 16, "contentLightLevel": 32},
+  "status": {"ok": 0, "malformed": 1, "unsupported": 2, "invalidRequest": 3, "resourceLimit": 4, "allocationFailure": 5, "abiMismatch": 6, "invalidHandle": 7, "internalFailure": 8},
+  "errorRecord": ["status", "domain", "field", "offset"],
+  "errorDomains": {"abi": 0, "pngChunk": 1, "sample": 2, "request": 3},
+  "ownership": "Monotonic non-reused handles scoped to one module instance; role-checked input/result allocations. Public host handles are private owner-branded objects (JS) or encapsulated store-bound IDs (Rust), checked before dispatch. Raw numeric ABI callers must maintain their own instance identity and never transfer an integer handle between stores; native checks role/liveness. Inputs borrowed for one synchronous call. Retained result owns record/pixel/profile bytes until png_release. All views reacquired after calls; public hosts copy before release. Release of absent handle rejects. Offset/length input spans are relative to named input handle; result spans are absolute module offsets.",
+  "validationOrder": ["ABI version and handle roles", "input limit", "signature", "chunk bounds/type/CRC in file order", "IHDR and chunk ordering/length/duplicates", "required chunks and no trailing file data", "color conflict", "bounded profile inflate", "bounded exact scanlines inflate", "filter/sample reconstruction", "color precedence"],
+  "parserRules": {"trailingFileBytes": "reject", "trailingZlibBytes": "reject", "idat": "one contiguous sequence", "colorChunks": "before IDAT; cICP/gAMA/cHRM/iCCP/sRGB also before PLTE", "unknownAncillary": "ignore after CRC validation", "unknownCritical": "reject", "apng": "ancillary chunks ignored; no animation semantics", "nonPaletteTrns": "unsupported", "reservedTypeBit": "must be uppercase"},
+  "compression": {"implementation": "miniz_oxide 0.8.9", "level": 6, "windowBits": 15, "strategy": 0, "flush": "Finish", "filter": "Sub", "idatChunks": 1, "compressionLevel": "validate integer 0..9; all select this same pinned configuration", "chunkOrder": ["IHDR", "sRGB or iCCP or cICP or none", "mDCv if present", "cLLi if present", "IDAT", "IEND"]}
+}

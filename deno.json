@@ -1,0 +1,15 @@
+{
+  "fmt": { "exclude": ["."] },
+  "name": "@sandom/png",
+  "version": "0.1.0",
+  "exports": "./dist/png-codec.wasm",
+  "imports": {
+    "@std/assert": "jsr:@std/assert@1"
+  },
+  "tasks": {
+    "build": "deno run --allow-read --allow-write --allow-env --allow-run=rustc,cargo tools/build-wasm.js",
+    "build:check": "deno run --allow-read --allow-write --allow-env --allow-run=rustc,cargo tools/build-wasm.js --check",
+    "test": "deno test --allow-read test/",
+    "package:check": "deno run -A tools/check-package.js"
+  }
+}

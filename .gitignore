@@ -1,0 +1,7 @@
+node_modules/
+dist/
+test-output/
+*.tgz
+.test-results.ndjson
+.test-summary.json
+.DS_Store
